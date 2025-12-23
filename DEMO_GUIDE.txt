@@ -1,0 +1,44 @@
+=== KAFKA WEATHER PIPELINE DEMO GUIDE ===
+
+QUICK START:
+1. Double-click "run-all.bat"
+2. Wait 1 minute for everything to start
+3. Open Tableau Public
+4. Connect to: http://localhost:4567/tableau
+5. Click "Get Weather Data"
+
+WHAT TO SHOW IN DEMO:
+
+1. KAFKA SERVER (Black window)
+   - Shows Kafka is running
+   - Port 9092 is active
+
+2. WEATHER PRODUCER (Blue window)
+   - Fetches real weather data every 10s
+   - Shows: "Sent message to -> Topic: live-weather-data"
+
+3. ETL CONSUMER (Green window)
+   - Processes and transforms data
+   - Shows: "Processing X new weather records"
+   - Displays transformations: °C→°F, wind chill, alerts
+
+4. TABLEAU DASHBOARD
+   - Live temperature timeline
+   - Weather conditions pie chart
+   - Real-time alerts
+
+TROUBLESHOOTING:
+- If Tableau says "URL points to website": Refresh connection
+- If no data: Wait 30 seconds for producer to send data
+- If ports busy: Restart computer or change ports in code
+
+DEMO TIPS:
+- Start with run-all.bat
+- Show the 4 windows running
+- Open Tableau and connect
+- Explain the data flow
+- Show batch stats (55+ records/sec)
+- Stop with stop-all.bat
+
+CONTACT:
+For issues, check logs in each window or run test-connection.bat
