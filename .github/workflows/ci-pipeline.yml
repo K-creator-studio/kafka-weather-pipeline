@@ -1,0 +1,44 @@
+name: Java CI Pipeline
+
+# When to run this pipeline:
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # Job 1: Build and Test
+  build:
+    runs-on: ubuntu-latest  # Runs on GitHub's Linux servers
+    
+    steps:
+    # Step 1: Checkout your code
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    # Step 2: Setup Java
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+    
+    # Step 3: Build with Maven
+    - name: Build with Maven
+      run: mvn clean compile
+    
+    # Step 4: Run tests (if you had any)
+    - name: Run tests
+      run: mvn test
+    
+    # Step 5: Package the application
+    - name: Package JAR
+      run: mvn package -DskipTests
+    
+    # Step 6: Upload build artifacts
+    - name: Upload JAR artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: kafka-weather-pipeline
+        path: target/*.jar
